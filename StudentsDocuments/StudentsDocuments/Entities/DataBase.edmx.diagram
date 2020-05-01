@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5956d862d67b422b9d648ccf8fecadbf" Name="Diagram1">
+        <EntityTypeShape EntityType="StudentsDocumentModel.Address" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsDocumentModel.BankDetail" Width="1.5" PointX="3.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsDocumentModel.Document" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsDocumentModel.Education" Width="1.5" PointX="3.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsDocumentModel.Group" Width="1.5" PointX="3.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsDocumentModel.Organization" Width="1.5" PointX="6" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsDocumentModel.Passport" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsDocumentModel.Speciality" Width="1.5" PointX="1.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsDocumentModel.Staff" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsDocumentModel.Status" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsDocumentModel.Student" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsDocumentModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsDocumentModel.TypeDocument" Width="1.5" PointX="6" PointY="15.25" IsExpanded="true" />
+        <AssociationConnector Association="StudentsDocumentModel.FK_Staff_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsDocumentModel.FK_Student_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsDocumentModel.FK_Organization_BankDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsDocumentModel.FK_Document_OrganizationEmpoyee" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsDocumentModel.FK_Document_OrganizationInstitution" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsDocumentModel.FK_Document_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsDocumentModel.FK_Document_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsDocumentModel.FK_Document_TypeDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsDocumentModel.FK_Student_Education" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsDocumentModel.FK_Group_Speciality" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsDocumentModel.FK_Student_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsDocumentModel.FK_Staff_Passport" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsDocumentModel.FK_Student_Passport" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

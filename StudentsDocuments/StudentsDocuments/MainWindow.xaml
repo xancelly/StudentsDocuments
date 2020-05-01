@@ -5,8 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentsDocuments"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Background="#4b2e83"
+        Title="MainWindow" Height="600" Width="1000">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0"
+               Grid.Column="0"
+               Source="Source/logo.png" />
+
+        <Frame x:Name="MainFrame"
+               NavigationUIVisibility="Hidden"
+               Grid.Column="0"
+               Grid.Row="1"
+               Background="#FFFFFF"
+               ContentRendered="MainFrame_ContentRendered"
+               Margin="5"
+               Grid.ColumnSpan="3" />
+
+        <Button x:Name="BackButton"
+                Grid.Column="2"
+                Style="{StaticResource MiniButton}"
+                Content="Назад"
+                Click="BackButton_Click" />
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="{Binding ElementName=MainFrame,Path=Content.Title}"
+                   Style="{StaticResource MainTextBlock}" />
     </Grid>
 </Window>
