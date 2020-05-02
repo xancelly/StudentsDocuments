@@ -5,10 +5,68 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:StudentsDocuments.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="GroupsPage">
+      Loaded="Page_Loaded"
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="Учебные группы">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0"
+                    Margin="5"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Поиск"
+                       Style="{StaticResource OtherTextBlock}" />
+            <TextBox x:Name="SearchTextBox"
+                     TextChanged="SearchTextBox_TextChanged" />
+
+        </StackPanel>
+
+        <DataGrid Grid.Row="1"
+                  Margin="5"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  x:Name="GroupsDataGrid"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№ группы"
+                                    Width="*"
+                                    Binding="{Binding Id}" />
+                <DataGridTextColumn Header="Образовательная программа"
+                                    Width="*"
+                                    Binding="{Binding FullSpeciality}" />
+                <DataGridTextColumn Header="Направление подготовки"
+                                    Width="*"
+                                    Binding="{Binding Speciality.Direction}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="AddButton"
+                Content="Добавить"
+                Margin="5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Grid.Row="2"
+                Click="AddButton_Click" />
+
+        <Button x:Name="EditButton"
+                Content="Изменить"
+                Margin="5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Grid.Row="2"
+                Click="EditButton_Click" />
+
+        <Button x:Name="DeleteButton"
+                Content="Удалить"
+                Margin="0,0,5,10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Grid.Row="2"
+                Click="DeleteButton_Click" />
     </Grid>
 </Page>

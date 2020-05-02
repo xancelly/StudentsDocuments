@@ -19,7 +19,8 @@
                            Text="Логин"
                            Margin="5" />
                 <TextBox x:Name="LoginTextBox"
-                         Margin="5" />
+                         Margin="5" 
+                         Text="teacher1"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal"
@@ -28,7 +29,8 @@
                            Text="Пароль"
                            Margin="5" />
                 <PasswordBox x:Name="PasswordBox"
-                             Margin="5" />
+                             Margin="5"
+                             Password="qwerty123"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal"

@@ -60,6 +60,30 @@
                     Value="30" />
         </Style>
 
+
+        <Style TargetType="TextBlock"
+               x:Key="ComboBoxTextBlock">
+            <Setter Property="FontFamily"
+                    Value="/Warehouse;component/Fonts/#Futuris Cyrillic" />
+            <Setter Property="FontSize"
+                    Value="20" />
+            <Setter Property="Width"
+                    Value="210" />
+            <Setter Property="Height"
+                    Value="30" />
+        </Style>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="FontFamily"
+                    Value="/Warehouse;component/Fonts/#Futuris Cyrillic" />
+            <Setter Property="FontSize"
+                    Value="25" />
+            <Setter Property="Width"
+                    Value="210" />
+            <Setter Property="Height"
+                    Value="30" />
+        </Style>
+
         <Style TargetType="ComboBox">
             <Setter Property="FontFamily"
                     Value="/StudentsDocuments;component/Fonts/#Akrobat SemiBold" />
@@ -70,7 +94,7 @@
             <Setter Property="Height"
                     Value="30" />
             <Setter Property="Foreground"
-                    Value="#1f1f1f" />
+                    Value="Black" />
         </Style>
 
         <Style TargetType="TextBox">
@@ -108,7 +132,9 @@
 
         <Style TargetType="GroupBox">
             <Setter Property="Foreground"
-                    Value="#1f1f1f" />
+                    Value="Black" />
+            <Setter Property="BorderBrush"
+                    Value="#4b2e83" />
             <Setter Property="FontFamily"
                     Value="/StudentsDocuments;component/Fonts/#Akrobat SemiBold" />
             <Setter Property="FontSize"
@@ -132,16 +158,16 @@
             <Setter Property="FontSize"
                     Value="20" />
             <Setter Property="Background"
-                    Value="#1f1f1f" />
+                    Value="#4b2e83" />
             <Setter Property="BorderBrush"
-                    Value="#ef5d23" />
+                    Value="#4b2e83" />
         </Style>
 
         <Style TargetType="DataGridRow">
             <Setter Property="Background"
-                    Value="#ef5d23" />
+                    Value="White" />
             <Setter Property="BorderBrush"
-                    Value="#1f1f1f" />
+                    Value="#4b2e83" />
         </Style>
 
         <Style TargetType="TabControl">

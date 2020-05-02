@@ -27,7 +27,7 @@ namespace StudentsDocuments.Pages
 
         private void GroupsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new GroupsPage());
         }
     }
 }
