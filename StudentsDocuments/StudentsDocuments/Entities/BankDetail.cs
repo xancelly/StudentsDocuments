@@ -24,7 +24,7 @@ namespace StudentsDocuments.Entities
         public string PaymentAccount { get; set; }
         public string PersonalAccount { get; set; }
         public string BankName { get; set; }
-        public string СorrespondentAccount { get; set; }
+        public string CorrespondentAccount { get; set; }
         public string BIK { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

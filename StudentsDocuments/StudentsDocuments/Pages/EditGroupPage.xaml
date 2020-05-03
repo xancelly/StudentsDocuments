@@ -6,8 +6,9 @@
       xmlns:local="clr-namespace:StudentsDocuments.Pages"
       mc:Ignorable="d"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-      d:DesignHeight="700" d:DesignWidth="1000"
-      Title="Панель редактирования учебных групп">
+      d:DesignHeight="800"
+      d:DesignWidth="1200"
+      Title="Редактирования учебных групп">
 
     <Grid>
         <StackPanel Orientation="Vertical"

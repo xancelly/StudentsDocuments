@@ -36,6 +36,9 @@ namespace StudentsDocuments.Pages
                 GroupTextBox.Text = CurrentGroup.Id;
                 DirectionTextBox.Text = CurrentSpeciality.Direction;
                 SpecialityCodeComboBox.SelectedItem = CurrentSpeciality as Speciality;
+            } else
+            {
+                this.Title = "Добавление учебной группы";
             }
         }
 

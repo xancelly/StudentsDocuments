@@ -29,7 +29,11 @@ namespace StudentsDocuments.Entities
         public string KPP { get; set; }
         public Nullable<int> IdBankDetail { get; set; }
         public string PhoneNumber { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
     
+        public virtual Address Address { get; set; }
         public virtual BankDetail BankDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Document> Document { get; set; }
