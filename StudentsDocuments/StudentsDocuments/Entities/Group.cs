@@ -22,6 +22,7 @@ namespace StudentsDocuments.Entities
     
         public string Id { get; set; }
         public string CodeSpeciality { get; set; }
+        public Nullable<int> Course { get; set; }
     
         public virtual Speciality Speciality { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

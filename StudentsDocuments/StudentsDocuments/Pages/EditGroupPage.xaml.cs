@@ -34,6 +34,7 @@ namespace StudentsDocuments.Pages
                 SaveButton.Content = "Сохранить";
                 GroupTextBox.IsEnabled = false;
                 GroupTextBox.Text = CurrentGroup.Id;
+                CouseTextBox.Text = Convert.ToString(CurrentGroup.Course);
                 DirectionTextBox.Text = CurrentSpeciality.Direction;
                 SpecialityCodeComboBox.SelectedItem = CurrentSpeciality as Speciality;
             } else
@@ -44,34 +45,45 @@ namespace StudentsDocuments.Pages
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            string crs = "1234";
             if (!String.IsNullOrWhiteSpace(GroupTextBox.Text) && !String.IsNullOrWhiteSpace(DirectionTextBox.Text) && SpecialityCodeComboBox.SelectedItem != null)
             {
                 if (!GroupTextBox.Text.Contains('_'))
                 {
-                    if (CurrentGroup == null)
+                    if (!CouseTextBox.Text.Contains('_') && CouseTextBox.Text.IndexOfAny(crs.ToCharArray()) >= -1)
                     {
-                        if (AppData.Context.Group.Where(c => c.Id == GroupTextBox.Text).FirstOrDefault() == null)
+                        if (CurrentGroup == null)
                         {
-                            CurrentGroup = new Group()
+                            if (AppData.Context.Group.Where(c => c.Id == GroupTextBox.Text).FirstOrDefault() == null)
                             {
-                                Id = GroupTextBox.Text,
-                                Speciality = CurrentSpeciality,
-                            };
-                            AppData.Context.Group.Add(CurrentGroup);
-                            AppData.Context.SaveChanges();
-                            MessageBox.Show("Группа успешно добавлена!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
-                            NavigationService.GoBack();
-                        } else
+                                CurrentGroup = new Group()
+                                {
+                                    Id = GroupTextBox.Text,
+                                    Speciality = CurrentSpeciality,
+                                    Course = Convert.ToInt32(CouseTextBox.Text),
+                                };
+                                AppData.Context.Group.Add(CurrentGroup);
+                                AppData.Context.SaveChanges();
+                                MessageBox.Show("Группа успешно добавлена!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+                                NavigationService.GoBack();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Группа с таким номером уже существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                        }
+                        else
                         {
-                            MessageBox.Show("Группа с таким номером уже существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            CurrentGroup.Id = GroupTextBox.Text;
+                            CurrentGroup.Speciality = CurrentSpeciality;
+                            CurrentGroup.Course = Convert.ToInt32(CouseTextBox.Text);
+                            MessageBox.Show("Информация обновлена!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+                            AppData.Context.SaveChanges();
+                            NavigationService.GoBack();
                         }
                     } else
                     {
-                        CurrentGroup.Id = GroupTextBox.Text;
-                        CurrentGroup.Speciality = CurrentSpeciality;
-                        MessageBox.Show("Информация обновлена!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
-                        AppData.Context.SaveChanges();
-                        NavigationService.GoBack();
+                        MessageBox.Show("Курс указан некорректно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 } else
                 {

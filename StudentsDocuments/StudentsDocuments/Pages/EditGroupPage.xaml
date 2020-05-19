@@ -26,6 +26,16 @@
 
             <StackPanel Orientation="Horizontal"
                         Margin="5">
+                <TextBlock Text="Курс"
+                           Style="{StaticResource OtherTextBlock}"
+                           Margin="5" />
+                <xctk:MaskedTextBox x:Name="CouseTextBox"
+                                    Mask="0"
+                                    Margin="5" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="5">
                 <TextBlock Style="{StaticResource OtherTextBlock}"
                            Margin="5"
                            TextWrapping="Wrap"

@@ -54,6 +54,7 @@
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="CodeSpeciality" Type="nvarchar" MaxLength="8" />
+          <Property Name="Course" Type="int" />
         </EntityType>
         <EntityType Name="Organization">
           <Key>
@@ -514,6 +515,7 @@
           </Key>
           <Property Name="Id" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
           <Property Name="CodeSpeciality" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Course" Type="Int32" />
           <NavigationProperty Name="Speciality" Relationship="StudentsDocumentModel.FK_Group_Speciality" FromRole="Group" ToRole="Speciality" />
           <NavigationProperty Name="Student" Relationship="StudentsDocumentModel.FK_Student_Group" FromRole="Group" ToRole="Student" />
         </EntityType>
@@ -843,6 +845,7 @@
           <EntitySetMapping Name="Group">
             <EntityTypeMapping TypeName="StudentsDocumentModel.Group">
               <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="Course" ColumnName="Course" />
                 <ScalarProperty Name="CodeSpeciality" ColumnName="CodeSpeciality" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

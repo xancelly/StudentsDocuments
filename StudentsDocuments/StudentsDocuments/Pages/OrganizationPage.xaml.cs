@@ -30,7 +30,7 @@ namespace StudentsDocuments.Pages
         public void UpdateOrganization()
         {
             var CurrentOrganization = AppData.Context.Organization.ToList();
-            CurrentOrganization = CurrentOrganization.Where(c => c.Name.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.LastName.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.FirstName.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.MiddleName.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.PhoneNumber.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.BankDetail.CorrespondentAccount.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.BankDetail.BIK.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.BankDetail.PaymentAccount.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
+            CurrentOrganization = CurrentOrganization.Where(c => c.Name.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.LastName.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.FirstName.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.MiddleName.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.PhoneNumber.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.Address.Region.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.Address.City.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.Address.Street.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
             OrganizationDataGrid.ItemsSource = CurrentOrganization;
         }
 

@@ -165,6 +165,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\EditStudentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\GroupsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -177,6 +181,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\StudentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\AuthorizationPage.xaml.cs">
@@ -184,6 +192,9 @@
     </Compile>
     <Compile Include="Pages\EditGroupPage.xaml.cs">
       <DependentUpon>EditGroupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditStudentPage.xaml.cs">
+      <DependentUpon>EditStudentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\GroupsPage.xaml.cs">
       <DependentUpon>GroupsPage.xaml</DependentUpon>
@@ -193,6 +204,9 @@
     </Compile>
     <Compile Include="Pages\OrganizationPage.xaml.cs">
       <DependentUpon>OrganizationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StudentsPage.xaml.cs">
+      <DependentUpon>StudentsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
