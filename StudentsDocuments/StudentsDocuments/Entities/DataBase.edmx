@@ -27,6 +27,13 @@
           <Property Name="CorrespondentAccount" Type="nvarchar" MaxLength="20" />
           <Property Name="BIK" Type="nvarchar" MaxLength="9" />
         </EntityType>
+        <EntityType Name="BasicOfLearning">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Document">
           <Key>
             <PropertyRef Name="Id" />
@@ -124,6 +131,7 @@
           <Property Name="IdPassport" Type="int" />
           <Property Name="IdEducation" Type="int" />
           <Property Name="IdGroup" Type="nvarchar" MaxLength="4" />
+          <Property Name="IdBasicOfLearning" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -274,6 +282,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Student_BasicOfLearning">
+          <End Role="BasicOfLearning" Type="Self.BasicOfLearning" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasicOfLearning">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="IdBasicOfLearning" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Student_Education">
           <End Role="Education" Type="Self.Education" Multiplicity="0..1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
@@ -313,6 +333,7 @@
         <EntityContainer Name="Хранилище StudentsDocumentModelContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankDetail" EntityType="Self.BankDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BasicOfLearning" EntityType="Self.BasicOfLearning" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
@@ -368,6 +389,10 @@
             <End Role="Address" EntitySet="Address" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
+          <AssociationSet Name="FK_Student_BasicOfLearning" Association="Self.FK_Student_BasicOfLearning">
+            <End Role="BasicOfLearning" EntitySet="BasicOfLearning" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
           <AssociationSet Name="FK_Student_Education" Association="Self.FK_Student_Education">
             <End Role="Education" EntitySet="Education" />
             <End Role="Student" EntitySet="Student" />
@@ -388,6 +413,7 @@
         <EntityContainer Name="StudentsDocumentEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Address" EntityType="StudentsDocumentModel.Address" />
           <EntitySet Name="BankDetail" EntityType="StudentsDocumentModel.BankDetail" />
+          <EntitySet Name="BasicOfLearning" EntityType="StudentsDocumentModel.BasicOfLearning" />
           <EntitySet Name="Document" EntityType="StudentsDocumentModel.Document" />
           <EntitySet Name="Education" EntityType="StudentsDocumentModel.Education" />
           <EntitySet Name="Group" EntityType="StudentsDocumentModel.Group" />
@@ -414,6 +440,10 @@
           <AssociationSet Name="FK_Organization_BankDetail" Association="StudentsDocumentModel.FK_Organization_BankDetail">
             <End Role="BankDetail" EntitySet="BankDetail" />
             <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_BasicOfLearning" Association="StudentsDocumentModel.FK_Student_BasicOfLearning">
+            <End Role="BasicOfLearning" EntitySet="BasicOfLearning" />
+            <End Role="Student" EntitySet="Student" />
           </AssociationSet>
           <AssociationSet Name="FK_Document_OrganizationEmpoyee" Association="StudentsDocumentModel.FK_Document_OrganizationEmpoyee">
             <End Role="Organization" EntitySet="Organization" />
@@ -481,6 +511,14 @@
           <Property Name="CorrespondentAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="BIK" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Organization" Relationship="StudentsDocumentModel.FK_Organization_BankDetail" FromRole="BankDetail" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="BasicOfLearning">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Student" Relationship="StudentsDocumentModel.FK_Student_BasicOfLearning" FromRole="BasicOfLearning" ToRole="Student" />
         </EntityType>
         <EntityType Name="Document">
           <Key>
@@ -597,7 +635,9 @@
           <Property Name="IdPassport" Type="Int32" />
           <Property Name="IdEducation" Type="Int32" />
           <Property Name="IdGroup" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="IdBasicOfLearning" Type="Int32" />
           <NavigationProperty Name="Address" Relationship="StudentsDocumentModel.FK_Student_Address" FromRole="Student" ToRole="Address" />
+          <NavigationProperty Name="BasicOfLearning" Relationship="StudentsDocumentModel.FK_Student_BasicOfLearning" FromRole="Student" ToRole="BasicOfLearning" />
           <NavigationProperty Name="Document" Relationship="StudentsDocumentModel.FK_Document_Student" FromRole="Student" ToRole="Document" />
           <NavigationProperty Name="Education" Relationship="StudentsDocumentModel.FK_Student_Education" FromRole="Student" ToRole="Education" />
           <NavigationProperty Name="Group" Relationship="StudentsDocumentModel.FK_Student_Group" FromRole="Student" ToRole="Group" />
@@ -666,6 +706,18 @@
             </Principal>
             <Dependent Role="Organization">
               <PropertyRef Name="IdBankDetail" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_BasicOfLearning">
+          <End Type="StudentsDocumentModel.BasicOfLearning" Role="BasicOfLearning" Multiplicity="0..1" />
+          <End Type="StudentsDocumentModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasicOfLearning">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="IdBasicOfLearning" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -819,6 +871,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BasicOfLearning">
+            <EntityTypeMapping TypeName="StudentsDocumentModel.BasicOfLearning">
+              <MappingFragment StoreEntitySet="BasicOfLearning">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Document">
             <EntityTypeMapping TypeName="StudentsDocumentModel.Document">
               <MappingFragment StoreEntitySet="Document">
@@ -913,6 +973,7 @@
           <EntitySetMapping Name="Student">
             <EntityTypeMapping TypeName="StudentsDocumentModel.Student">
               <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="IdBasicOfLearning" ColumnName="IdBasicOfLearning" />
                 <ScalarProperty Name="IdGroup" ColumnName="IdGroup" />
                 <ScalarProperty Name="IdEducation" ColumnName="IdEducation" />
                 <ScalarProperty Name="IdPassport" ColumnName="IdPassport" />

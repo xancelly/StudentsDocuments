@@ -44,7 +44,7 @@
 
                 <DataGridTextColumn Header="Дата рождения"
                                     Width="*"
-                                    Binding="{Binding DateOfBirth}" />
+                                    Binding="{Binding DateOfBirth, StringFormat={}dd.MM.yyyy}"  />
                 <DataGridTextColumn Header="Номер телефона"
                                     Width="*"
                                     Binding="{Binding PhoneNumber}" />
@@ -73,6 +73,9 @@
                         </MultiBinding>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
+                <DataGridTextColumn Header="Форма обучения"
+                                    Width="*"
+                                    Binding="{Binding BasicOfLearning.Name}" />
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="AddButton"

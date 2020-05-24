@@ -27,6 +27,7 @@ namespace StudentsDocuments.Entities
     
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<BankDetail> BankDetail { get; set; }
+        public virtual DbSet<BasicOfLearning> BasicOfLearning { get; set; }
         public virtual DbSet<Document> Document { get; set; }
         public virtual DbSet<Education> Education { get; set; }
         public virtual DbSet<Group> Group { get; set; }

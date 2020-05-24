@@ -39,5 +39,10 @@ namespace StudentsDocuments.Pages
         {
             NavigationService.Navigate(new StudentsPage());
         }
+
+        private void DocumentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new DocumentPage());
+        }
     }
 }

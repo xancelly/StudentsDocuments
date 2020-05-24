@@ -23,6 +23,7 @@ namespace StudentsDocuments.Pages
     {
         Student CurrentStudent = null;
         Group CurrentGroup = null;
+        BasicOfLearning CurrentBasicOfLearning = null;
         Education CurrentEducation = null;
         Passport CurrentPassport = null;
         Address CurrentAddress = null;
@@ -32,10 +33,12 @@ namespace StudentsDocuments.Pages
             CurrentStudent = student;
             GroupComboBox.ItemsSource = AppData.Context.Group.ToList();
             EducationComboBox.ItemsSource = AppData.Context.Education.ToList();
+            BasicOfLearningComboBox.ItemsSource = AppData.Context.BasicOfLearning.ToList();
             if (CurrentStudent != null)
             {
                 CurrentGroup = AppData.Context.Group.Where(c => c.Id == CurrentStudent.IdGroup).FirstOrDefault();
                 CurrentEducation = AppData.Context.Education.Where(c => c.Id == CurrentStudent.IdEducation).FirstOrDefault();
+                CurrentBasicOfLearning = AppData.Context.BasicOfLearning.Where(c => c.Id == CurrentStudent.IdBasicOfLearning).FirstOrDefault();
                 CurrentAddress = AppData.Context.Address.Where(c => c.Id == CurrentStudent.IdAddress).FirstOrDefault();
                 CurrentPassport = AppData.Context.Passport.Where(c => c.Id == CurrentStudent.IdPassport).FirstOrDefault();
                 SaveButton.Content = "Сохранить";
@@ -63,7 +66,7 @@ namespace StudentsDocuments.Pages
         {
             string letterList = "ABCDEFGHIJKLMNOPRSTUVWXYZabcdefghijklmnoprstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя";
             string numList = "1234567890";
-            if (!String.IsNullOrWhiteSpace(LastNameTextBox.Text) || !String.IsNullOrWhiteSpace(FirstNameTextBox.Text) || !String.IsNullOrWhiteSpace(MiddleNameTextBox.Text) || !String.IsNullOrWhiteSpace(PhoneNumberTextBox.Text) || !String.IsNullOrWhiteSpace(PassportTextBox.Text) || !String.IsNullOrWhiteSpace(IssuedByWhomTextBox.Text) || !String.IsNullOrWhiteSpace(AreaTextBox.Text) || !String.IsNullOrWhiteSpace(CityTextBox.Text) || !String.IsNullOrWhiteSpace(StreetTextBox.Text) || !String.IsNullOrWhiteSpace(HouseTextBox.Text) || DateOfBirthDatePicker.SelectedDate != null || GroupComboBox.SelectedItem != null || EducationComboBox.SelectedItem != null || DateOfIssueDatePicker.SelectedDate != null)
+            if (!String.IsNullOrWhiteSpace(LastNameTextBox.Text) && !String.IsNullOrWhiteSpace(FirstNameTextBox.Text) && !String.IsNullOrWhiteSpace(MiddleNameTextBox.Text) && !String.IsNullOrWhiteSpace(PhoneNumberTextBox.Text) && !String.IsNullOrWhiteSpace(PassportTextBox.Text) && !String.IsNullOrWhiteSpace(IssuedByWhomTextBox.Text) && !String.IsNullOrWhiteSpace(AreaTextBox.Text) && !String.IsNullOrWhiteSpace(CityTextBox.Text) && !String.IsNullOrWhiteSpace(StreetTextBox.Text) && !String.IsNullOrWhiteSpace(HouseTextBox.Text) && DateOfBirthDatePicker.SelectedDate != null && GroupComboBox.SelectedItem != null && EducationComboBox.SelectedItem != null && DateOfIssueDatePicker.SelectedDate != null && BasicOfLearningComboBox.SelectedItem != null)
             {
                 if (LastNameTextBox.Text.IndexOfAny(numList.ToCharArray()) <= -1)
                 {
@@ -117,6 +120,7 @@ namespace StudentsDocuments.Pages
                                                                 Education = EducationComboBox.SelectedItem as Education,
                                                                 IdPassport = CurrentPassport.Id,
                                                                 IdAddress = CurrentAddress.Id,
+                                                                BasicOfLearning = BasicOfLearningComboBox.SelectedItem as BasicOfLearning,
                                                             };
                                                             AppData.Context.Student.Add(CurrentStudent);
                                                             AppData.Context.SaveChanges();
@@ -132,6 +136,7 @@ namespace StudentsDocuments.Pages
                                                         CurrentStudent.PhoneNumber = PhoneNumberTextBox.Text;
                                                         CurrentStudent.DateOfBirth = DateOfBirthDatePicker.SelectedDate;
                                                         CurrentGroup = GroupComboBox.SelectedItem as Group;
+                                                        CurrentBasicOfLearning = BasicOfLearningComboBox.SelectedItem as BasicOfLearning;
                                                         CurrentEducation = EducationComboBox.SelectedItem as Education;
                                                         CurrentPassport.Serial = PassportTextBox.Text.Remove(5, 7).Replace(" ", "");
                                                         CurrentPassport.Number = PassportTextBox.Text.Remove(0, 6);

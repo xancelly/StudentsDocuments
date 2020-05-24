@@ -79,6 +79,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\DocumentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EditDocumentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\EditOrganizationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -96,6 +104,9 @@
     </Compile>
     <Compile Include="Entities\AppData.cs" />
     <Compile Include="Entities\BankDetail.cs">
+      <DependentUpon>DataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\BasicOfLearning.cs">
       <DependentUpon>DataBase.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DataBase.Context.cs">
@@ -116,6 +127,12 @@
     <Compile Include="Entities\DetailsPartial.cs" />
     <Compile Include="Entities\Document.cs">
       <DependentUpon>DataBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DocumentPage.xaml.cs">
+      <DependentUpon>DocumentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EditDocumentPage.xaml.cs">
+      <DependentUpon>EditDocumentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\EditOrganizationPage.xaml.cs">
       <DependentUpon>EditOrganizationPage.xaml</DependentUpon>

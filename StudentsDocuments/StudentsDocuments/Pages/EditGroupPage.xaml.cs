@@ -45,12 +45,12 @@ namespace StudentsDocuments.Pages
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            string crs = "1234";
+            string crs = "12345";
             if (!String.IsNullOrWhiteSpace(GroupTextBox.Text) && !String.IsNullOrWhiteSpace(DirectionTextBox.Text) && SpecialityCodeComboBox.SelectedItem != null)
             {
                 if (!GroupTextBox.Text.Contains('_'))
                 {
-                    if (!CouseTextBox.Text.Contains('_') && CouseTextBox.Text.IndexOfAny(crs.ToCharArray()) >= -1)
+                    if (!CouseTextBox.Text.Contains('_') && !(CouseTextBox.Text.IndexOfAny(crs.ToCharArray()) <= -1))
                     {
                         if (CurrentGroup == null)
                         {

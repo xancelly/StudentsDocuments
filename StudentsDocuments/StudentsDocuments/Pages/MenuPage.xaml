@@ -19,7 +19,8 @@
                         Content="Договоры" 
                         Margin="5"
                         Height="70"
-                        Width="200"/>
+                        Width="200"
+                        Click="DocumentsButton_Click" />
                 
                 <Button x:Name="StudentsButton" 
                         Content="Обучающиеся"
