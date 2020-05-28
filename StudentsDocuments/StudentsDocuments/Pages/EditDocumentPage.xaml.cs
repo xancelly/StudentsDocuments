@@ -24,7 +24,7 @@ namespace StudentsDocuments.Pages
         Document CurrentDocument = null;
         Address CurrentAddressEmployee = null;
         Address CurrentAddressInstitution = null;
-        Organization CurrentOrganizationEmloyee = null;
+        Organization CurrentOrganizationEmployee = null;
         Organization CurrentOrganizationInstitution = null;
         Student CurrentStudent = null;
         Address CurrentAddressStudent = null;
@@ -42,9 +42,10 @@ namespace StudentsDocuments.Pages
             StatusComboBox.ItemsSource = AppData.Context.Status.ToList();
             TypeDocumentComboBox.ItemsSource = AppData.Context.TypeDocument.ToList();
 
+
             if (CurrentDocument != null)
             {
-                CurrentOrganizationEmloyee = AppData.Context.Organization.Where(c => c.Id == CurrentDocument.Organization.Id).FirstOrDefault();
+                CurrentOrganizationEmployee = AppData.Context.Organization.Where(c => c.Id == CurrentDocument.Organization.Id).FirstOrDefault();
                 CurrentOrganizationInstitution = AppData.Context.Organization.Where(c => c.Id == CurrentDocument.Organization1.Id).FirstOrDefault();
                 CurrentAddressEmployee = AppData.Context.Address.Where(c => c.Id == CurrentDocument.Organization.Address.Id).FirstOrDefault();
                 CurrentAddressInstitution = AppData.Context.Address.Where(c => c.Id == CurrentDocument.Organization1.Address.Id).FirstOrDefault();
@@ -111,6 +112,7 @@ namespace StudentsDocuments.Pages
                 DateStartDatePicker.SelectedDate = CurrentDocument.DateStart;
                 StatusComboBox.SelectedItem = CurrentDocument.Status as Status;
                 TypeDocumentComboBox.SelectedItem = CurrentDocument.TypeDocument as TypeDocument;
+                AssistanceTextBox.Text = CurrentDocument.Assistance;
             }
         }
 
@@ -184,18 +186,220 @@ namespace StudentsDocuments.Pages
                                                                                                                                         {
                                                                                                                                             if (AssistanceTextBox.Text.IndexOfAny(letterList.ToCharArray()) <= -1)
                                                                                                                                             {
+                                                                                                                                                if (DateOfBirthDatePicker.SelectedDate < DateTime.Today)
+                                                                                                                                                {
+                                                                                                                                                    if (DateOfIssueDatePicker.SelectedDate < DateTime.Today)
+                                                                                                                                                    {
+                                                                                                                                                        if (CurrentDocument == null)
+                                                                                                                                                        {
+                                                                                                                                                            CurrentAddressEmployee = new Address()
+                                                                                                                                                            {
+                                                                                                                                                                Region = EmployeeAreaTextBox.Text,
+                                                                                                                                                                City = EmployeeCityTextBox.Text,
+                                                                                                                                                                Street = EmployeeStreetTextBox.Text,
+                                                                                                                                                                House = EmployeeHouseTextBox.Text,
+                                                                                                                                                            };
+                                                                                                                                                            AppData.Context.Address.Add(CurrentAddressEmployee);
+                                                                                                                                                            AppData.Context.SaveChanges();
+                                                                                                                                                            CurrentAddressInstitution = new Address()
+                                                                                                                                                            {
+                                                                                                                                                                Region = InstitutionAreaTextBox.Text,
+                                                                                                                                                                City = InstitutionCityTextBox.Text,
+                                                                                                                                                                Street = InstitutionStreetTextBox.Text,
+                                                                                                                                                                House = InstitutionHouseTextBox.Text,
+                                                                                                                                                            };
+                                                                                                                                                            AppData.Context.Address.Add(CurrentAddressInstitution);
+                                                                                                                                                            AppData.Context.SaveChanges();
+                                                                                                                                                            CurrentAddressStudent = new Address()
+                                                                                                                                                            {
+                                                                                                                                                                Region = AreaTextBox.Text,
+                                                                                                                                                                City = CityTextBox.Text,
+                                                                                                                                                                Street = StreetTextBox.Text,
+                                                                                                                                                                House = HouseTextBox.Text,
+                                                                                                                                                                Apartment = ApartmentTextBox.Text,
+                                                                                                                                                            };
+                                                                                                                                                            AppData.Context.Address.Add(CurrentAddressStudent);
+                                                                                                                                                            AppData.Context.SaveChanges();
+                                                                                                                                                            CurrentBankDetailEmployee = new BankDetail()
+                                                                                                                                                            {
+                                                                                                                                                                BankName = EmployeeBankNameTextBox.Text,
+                                                                                                                                                                PaymentAccount = EmployeePaymentAccountTextBox.Text,
+                                                                                                                                                                CorrespondentAccount = EmployeeCorrespondentAccountTextBox.Text,
+                                                                                                                                                                BIK = EmployeeBIKTextBox.Text,
+                                                                                                                                                            };
+                                                                                                                                                            AppData.Context.BankDetail.Add(CurrentBankDetailEmployee);
+                                                                                                                                                            AppData.Context.SaveChanges();
+                                                                                                                                                            CurrentBankDetailInstitution = new BankDetail()
+                                                                                                                                                            {
+                                                                                                                                                                BankName = InstitutionBankNameTextBox.Text,
+                                                                                                                                                                PaymentAccount = InstitutionPaymentAccountTextBox.Text,
+                                                                                                                                                                PersonalAccount = InstitutionPersonnalAccountTextBox.Text,
+                                                                                                                                                                BIK = InstitutionBIKTextBox.Text,
+                                                                                                                                                            };
+                                                                                                                                                            AppData.Context.BankDetail.Add(CurrentBankDetailInstitution);
+                                                                                                                                                            AppData.Context.SaveChanges();
+                                                                                                                                                            CurrentOrganizationEmployee = new Organization()
+                                                                                                                                                            {
+                                                                                                                                                                Name = EmployeeNameTextBox.Text,
+                                                                                                                                                                IdAddress = CurrentAddressEmployee.Id,
+                                                                                                                                                                OGRN = EmployeeOgrnTextBox.Text,
+                                                                                                                                                                INN = EmployeeInnTextBox.Text,
+                                                                                                                                                                KPP = EmployeeKPPTextBox.Text,
+                                                                                                                                                                IdBankDetail = CurrentBankDetailEmployee.Id,
+                                                                                                                                                                PhoneNumber = EmployeePhoneNumberTextBox.Text,
+                                                                                                                                                                LastName = EmployeeLastNameTextBox.Text,
+                                                                                                                                                                FirstName = EmployeeFirstNameTextBox.Text,
+                                                                                                                                                                MiddleName = EmployeeMiddleNameTextBox.Text,
+                                                                                                                                                            };
+                                                                                                                                                            AppData.Context.Organization.Add(CurrentOrganizationEmployee);
+                                                                                                                                                            AppData.Context.SaveChanges();
+                                                                                                                                                            CurrentOrganizationInstitution = new Organization()
+                                                                                                                                                            {
+                                                                                                                                                                Name = InstitutionNameTextBox.Text,
+                                                                                                                                                                IdAddress = CurrentAddressInstitution.Id,
+                                                                                                                                                                OGRN = InstitutionOgrnTextBox.Text,
+                                                                                                                                                                INN = InstitutionInnTextBox.Text,
+                                                                                                                                                                KPP = InstitutionKPPTextBox.Text,
+                                                                                                                                                                IdBankDetail = CurrentBankDetailInstitution.Id,
+                                                                                                                                                                PhoneNumber = InstitutionPhoneNumberTextBox.Text,
+                                                                                                                                                                LastName = InstitutionLastNameTextBox.Text,
+                                                                                                                                                                FirstName = InstitutionFirstNameTextBox.Text,
+                                                                                                                                                                MiddleName = InstitutionMiddleNameTextBox.Text,
+                                                                                                                                                            };
+                                                                                                                                                            AppData.Context.Organization.Add(CurrentOrganizationInstitution);
+                                                                                                                                                            AppData.Context.SaveChanges();
+                                                                                                                                                            CurrentPassport = new Passport()
+                                                                                                                                                            {
+                                                                                                                                                                Serial = PassportTextBox.Text.Remove(5, 7).Replace(" ", ""),
+                                                                                                                                                                Number = PassportTextBox.Text.Remove(0, 6),
+                                                                                                                                                                DateOfIssue = DateOfIssueDatePicker.SelectedDate,
+                                                                                                                                                                IssuedByWhom = IssuedByWhomTextBox.Text,
+                                                                                                                                                            };
+                                                                                                                                                            AppData.Context.Passport.Add(CurrentPassport);
+                                                                                                                                                            AppData.Context.SaveChanges();
+                                                                                                                                                            CurrentStudent = new Student()
+                                                                                                                                                            {
+                                                                                                                                                                LastName = LastNameTextBox.Text,
+                                                                                                                                                                FirstName = FirstNameTextBox.Text,
+                                                                                                                                                                MiddleName = MiddleNameTextBox.Text,
+                                                                                                                                                                PhoneNumber = PhoneNumberTextBox.Text,
+                                                                                                                                                                DateOfBirth = DateOfBirthDatePicker.SelectedDate,
+                                                                                                                                                                Group = GroupComboBox.SelectedItem as Group,
+                                                                                                                                                                Education = EducationComboBox.SelectedItem as Education,
+                                                                                                                                                                BasicOfLearning = BasicOfLearningComboBox.SelectedItem as BasicOfLearning,
+                                                                                                                                                                IdAddress = CurrentAddressStudent.Id,
+                                                                                                                                                                IdPassport = CurrentPassport.Id,
+                                                                                                                                                            };
+                                                                                                                                                            AppData.Context.Student.Add(CurrentStudent);
+                                                                                                                                                            AppData.Context.SaveChanges();
+                                                                                                                                                            CurrentDocument = new Document()
+                                                                                                                                                            {
+                                                                                                                                                                Date = DateDatePicker.SelectedDate,
+                                                                                                                                                                DateStart = DateStartDatePicker.SelectedDate,
+                                                                                                                                                                Status = StatusComboBox.SelectedItem as Status,
+                                                                                                                                                                Assistance = Convert.ToDecimal(AssistanceTextBox.Text),
+                                                                                                                                                                TypeDocument = TypeDocumentComboBox.SelectedItem as TypeDocument,
+                                                                                                                                                                IdStudent = CurrentStudent.Id,
+                                                                                                                                                                IdOrgEmpl = CurrentOrganizationEmployee.Id,
+                                                                                                                                                                IdOrgInst = CurrentOrganizationInstitution.Id,
+                                                                                                                                                            };
+                                                                                                                                                            AppData.Context.Document.Add(CurrentDocument);
+                                                                                                                                                            MessageBox.Show("Договор успешно добавлен!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+                                                                                                                                                            AppData.Context.SaveChanges();
+                                                                                                                                                            NavigationService.GoBack();
+                                                                                                                                                        }
+                                                                                                                                                        else
+                                                                                                                                                        {
+                                                                                                                                                            CurrentOrganizationEmployee.Name = EmployeeNameTextBox.Text;
+                                                                                                                                                            CurrentOrganizationEmployee.OGRN = EmployeeOgrnTextBox.Text;
+                                                                                                                                                            CurrentOrganizationEmployee.INN = EmployeeInnTextBox.Text;
+                                                                                                                                                            CurrentOrganizationEmployee.KPP = EmployeeKPPTextBox.Text;
+                                                                                                                                                            CurrentOrganizationEmployee.PhoneNumber = EmployeePhoneNumberTextBox.Text;
+                                                                                                                                                            CurrentOrganizationEmployee.LastName = EmployeeLastNameTextBox.Text;
+                                                                                                                                                            CurrentOrganizationEmployee.FirstName = EmployeeFirstNameTextBox.Text;
+                                                                                                                                                            CurrentOrganizationEmployee.MiddleName = EmployeeMiddleNameTextBox.Text;
+                                                                                                                                                            CurrentAddressEmployee.Region = EmployeeAreaTextBox.Text;
+                                                                                                                                                            CurrentAddressEmployee.City = EmployeeCityTextBox.Text;
+                                                                                                                                                            CurrentAddressEmployee.Street = EmployeeStreetTextBox.Text;
+                                                                                                                                                            CurrentAddressEmployee.House = EmployeeHouseTextBox.Text;
+                                                                                                                                                            CurrentBankDetailEmployee.BankName = EmployeeBankNameTextBox.Text;
+                                                                                                                                                            CurrentBankDetailEmployee.PaymentAccount = EmployeePaymentAccountTextBox.Text;
+                                                                                                                                                            CurrentBankDetailEmployee.CorrespondentAccount = EmployeeCorrespondentAccountTextBox.Text;
+                                                                                                                                                            CurrentBankDetailEmployee.BIK = EmployeeBIKTextBox.Text;
 
-                                                                                                                                            } else
+                                                                                                                                                            CurrentOrganizationInstitution.Name = InstitutionNameTextBox.Text;
+                                                                                                                                                            CurrentOrganizationInstitution.OGRN = InstitutionOgrnTextBox.Text;
+                                                                                                                                                            CurrentOrganizationInstitution.INN = InstitutionInnTextBox.Text;
+                                                                                                                                                            CurrentOrganizationInstitution.KPP = InstitutionKPPTextBox.Text;
+                                                                                                                                                            CurrentOrganizationInstitution.PhoneNumber = InstitutionPhoneNumberTextBox.Text;
+                                                                                                                                                            CurrentOrganizationInstitution.LastName = InstitutionLastNameTextBox.Text;
+                                                                                                                                                            CurrentOrganizationInstitution.FirstName = InstitutionFirstNameTextBox.Text;
+                                                                                                                                                            CurrentOrganizationInstitution.MiddleName = InstitutionMiddleNameTextBox.Text;
+                                                                                                                                                            CurrentAddressInstitution.Region = InstitutionAreaTextBox.Text;
+                                                                                                                                                            CurrentAddressInstitution.City = InstitutionCityTextBox.Text;
+                                                                                                                                                            CurrentAddressInstitution.Street = InstitutionStreetTextBox.Text;
+                                                                                                                                                            CurrentAddressInstitution.House = InstitutionHouseTextBox.Text;
+                                                                                                                                                            CurrentBankDetailInstitution.BankName = InstitutionBankNameTextBox.Text;
+                                                                                                                                                            CurrentBankDetailInstitution.PaymentAccount = InstitutionPaymentAccountTextBox.Text;
+                                                                                                                                                            CurrentBankDetailInstitution.PersonalAccount = InstitutionPersonnalAccountTextBox.Text;
+                                                                                                                                                            CurrentBankDetailInstitution.BIK = InstitutionBIKTextBox.Text;
+
+                                                                                                                                                            CurrentStudent.LastName = LastNameTextBox.Text;
+                                                                                                                                                            CurrentStudent.FirstName = FirstNameTextBox.Text;
+                                                                                                                                                            CurrentStudent.MiddleName = MiddleNameTextBox.Text;
+                                                                                                                                                            CurrentStudent.PhoneNumber = PhoneNumberTextBox.Text;
+                                                                                                                                                            CurrentStudent.DateOfBirth = DateOfBirthDatePicker.SelectedDate;
+                                                                                                                                                            CurrentStudent.Group = GroupComboBox.SelectedItem as Group;
+                                                                                                                                                            CurrentStudent.BasicOfLearning = BasicOfLearningComboBox.SelectedItem as BasicOfLearning;
+                                                                                                                                                            CurrentStudent.Education = EducationComboBox.SelectedItem as Education;
+                                                                                                                                                            CurrentPassport.Serial = PassportTextBox.Text.Remove(5, 7).Replace(" ", "");
+                                                                                                                                                            CurrentPassport.Number = PassportTextBox.Text.Remove(0, 6);
+                                                                                                                                                            CurrentPassport.DateOfIssue = DateOfIssueDatePicker.SelectedDate;
+                                                                                                                                                            CurrentPassport.IssuedByWhom = IssuedByWhomTextBox.Text;
+                                                                                                                                                            CurrentStudent.Address.Region = AreaTextBox.Text;
+                                                                                                                                                            CurrentStudent.Address.City = CityTextBox.Text;
+                                                                                                                                                            CurrentStudent.Address.Street = StreetTextBox.Text;
+                                                                                                                                                            CurrentStudent.Address.House = HouseTextBox.Text;
+                                                                                                                                                            CurrentStudent.Address.Apartment = ApartmentTextBox.Text;
+
+                                                                                                                                                            CurrentDocument.Date = DateDatePicker.SelectedDate;
+                                                                                                                                                            CurrentDocument.DateStart = DateStartDatePicker.SelectedDate;
+                                                                                                                                                            CurrentDocument.Status = StatusComboBox.SelectedItem as Status;
+                                                                                                                                                            CurrentDocument.TypeDocument = TypeDocumentComboBox.SelectedItem as TypeDocument;
+                                                                                                                                                            CurrentDocument.Student.Id = CurrentStudent.Id;
+                                                                                                                                                            CurrentDocument.IdOrgEmpl = CurrentOrganizationEmployee.Id;
+                                                                                                                                                            CurrentDocument.IdOrgInst = CurrentOrganizationInstitution.Id;
+
+                                                                                                                                                            AppData.Context.SaveChanges();
+                                                                                                                                                            MessageBox.Show("Информация обновлена!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+                                                                                                                                                            NavigationService.GoBack();
+                                                                                                                                                        }
+                                                                                                                                                    }
+                                                                                                                                                    else
+                                                                                                                                                    {
+                                                                                                                                                        MessageBox.Show("Дата выдачи паспорта обучающегося указана некорректно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                                                                                                                                        DateOfIssueDatePicker.Focus();
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                                else
+                                                                                                                                                {
+                                                                                                                                                    MessageBox.Show("Дата рождения обучающегося указана некорректно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                                                                                                                                                    DateOfBirthDatePicker.Focus();
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                            else
                                                                                                                                             {
                                                                                                                                                 MessageBox.Show("Социальная помощь обучающегося указаны некорректно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                                                                                                                                                 PassportTextBox.Focus();
                                                                                                                                             }
-                                                                                                                                        } else
+                                                                                                                                        }
+                                                                                                                                        else
                                                                                                                                         {
                                                                                                                                             MessageBox.Show("Серия и номер паспорт обучающегося указаны некорректно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                                                                                                                                             PassportTextBox.Focus();
                                                                                                                                         }
-                                                                                                                                    } else
+                                                                                                                                    }
+                                                                                                                                    else
                                                                                                                                     {
                                                                                                                                         MessageBox.Show("Номер телефона обучающегося указан некорректно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                                                                                                                                         PhoneNumberTextBox.Focus();
@@ -210,7 +414,7 @@ namespace StudentsDocuments.Pages
                                                                                                                             else
                                                                                                                             {
                                                                                                                                 MessageBox.Show("Область обучающегося указана некорректно!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                                                                                                                                AreaTextBox.Focus(); 
+                                                                                                                                AreaTextBox.Focus();
                                                                                                                             }
                                                                                                                         }
                                                                                                                         else

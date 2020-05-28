@@ -569,6 +569,7 @@
                                        Margin="5"
                                        Style="{StaticResource OtherTextBlock}" />
                             <ComboBox x:Name="StatusComboBox"
+                                      DisplayMemberPath="Name"
                                       Margin="5" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
@@ -576,6 +577,7 @@
                                        Margin="5"
                                        Style="{StaticResource OtherTextBlock}" />
                             <ComboBox x:Name="TypeDocumentComboBox"
+                                      DisplayMemberPath="Name"
                                       Margin="5" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
