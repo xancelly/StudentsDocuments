@@ -4,14 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:StudentsDocuments.Pages"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       Loaded="Page_Loaded"
       d:DesignHeight="800" d:DesignWidth="1200"
       Title="Документы">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="250" />
+            <RowDefinition Height="180" />
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
@@ -28,118 +29,101 @@
             </StackPanel>
             <GroupBox Header="Фильтрация"
                       DockPanel.Dock="Bottom">
-                <StackPanel Orientation="Horizontal">
-
-                    <StackPanel Orientation="Vertical"
-                                HorizontalAlignment="Left">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Дата договора"
-                                       Margin="5"
-                                       Width="250"
-                                       Style="{StaticResource OtherTextBlock}" />
-                            <DatePicker x:Name="DateDocumentDatePicker"
-                                        Margin="5" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Дата начала действия"
-                                       Margin="5"
-                                       Width="250"
-                                       Style="{StaticResource OtherTextBlock}" />
-                            <DatePicker x:Name="DateStartDocumentDatePicker"
-                                        Margin="5" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Основа обучения"
-                                       Margin="5"
-                                       Width="250"
-                                       Style="{StaticResource OtherTextBlock}" />
-                            <ComboBox x:Name="BasicOfLearningComboBox"
-                                      Margin="5" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Соц. поддержка от"
-                                       Margin="5"
-                                       Width="250"
-                                       Style="{StaticResource OtherTextBlock}" />
-                            <TextBox x:Name="Assistance"
-                                     Margin="5" />
-                        </StackPanel>
-
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal"
+                                DockPanel.Dock="Top">
+                        <TextBlock Text="Фильтровать по "
+                                   Margin="5"
+                                   Style="{StaticResource OtherTextBlock}" />
+                        <ComboBox x:Name="FilterComboBox"
+                                  Width="Auto"
+                                  SelectionChanged="FilterComboBox_SelectionChanged"
+                                  Margin="5">
+                            <TextBlock Style="{StaticResource ComboBoxTextBlock}"
+                                       Text="Не выбрано" />
+                            <TextBlock Style="{StaticResource ComboBoxTextBlock}" 
+                                       Text="Дате договора"/>
+                            <TextBlock Style="{StaticResource ComboBoxTextBlock}"
+                                       Text="Дате начала договора" />
+                            <TextBlock Style="{StaticResource ComboBoxTextBlock}"
+                                       Text="Виду договора" />
+                            <TextBlock Style="{StaticResource ComboBoxTextBlock}"
+                                       Text="Статусу договора" />
+                            <TextBlock Style="{StaticResource ComboBoxTextBlock}"
+                                       Text="Соц. поддержки" />
+                            <TextBlock Style="{StaticResource ComboBoxTextBlock}"
+                                       Text="Основе обучения" />
+                            <TextBlock Style="{StaticResource ComboBoxTextBlock}"
+                                       Text="Учебной группе" />
+                            <TextBlock Style="{StaticResource ComboBoxTextBlock}"
+                                       Text="Курсу" />
+                            <TextBlock Style="{StaticResource ComboBoxTextBlock}"
+                                       Text="Специальности" />
+                            
+                        </ComboBox>
                     </StackPanel>
-
-                    <StackPanel Orientation="Vertical"
-                                HorizontalAlignment="Right">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Вид договора"
-                                       Margin="5"
-                                       Style="{StaticResource OtherTextBlock}" />
-                            <ComboBox x:Name="TypeDocumentComboBox"
-                                      Margin="5" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Статус договора"
-                                       Margin="5"
-                                       Style="{StaticResource OtherTextBlock}" />
-                            <ComboBox x:Name="StatusDocumentComboBox"
-                                      Margin="5" />
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Специальность"
-                                       Margin="5"
-                                       Style="{StaticResource OtherTextBlock}" />
-                            <ComboBox x:Name="SpecialityComboBox"
-                                      Margin="5" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Соц. поддержка до"
-                                       Margin="5"
-                                       Style="{StaticResource OtherTextBlock}" />
-                            <TextBox x:Name="AssistanceTextBox"
-                                     Margin="5" />
-                        </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Параметр"
+                                   Margin="5"
+                                   Style="{StaticResource OtherTextBlock}" />
+                        <DatePicker x:Name="DateDocumentDatePicker"
+                                    Margin="5"
+                                    Visibility="Hidden" />
+                        <DatePicker x:Name="DateStartDocumentDatePicker"
+                                  Margin="-235,5,5,5"
+                                  Visibility="Hidden" />
+                        <ComboBox x:Name="TypeDocumentComboBox"
+                                  Margin="-235,5,5,5"
+                                  DisplayMemberPath="Name"
+                                  Visibility="Hidden" />
+                        <ComboBox x:Name="StatusComboBox"
+                                  Margin="-235,5,5,5"
+                                  DisplayMemberPath="Name"
+                                  Visibility="Hidden" />
+                        <TextBox x:Name="AssistanceTextBox"
+                                  Margin="-235,5,5,5"
+                                  Visibility="Hidden" />
+                        <ComboBox x:Name="BasicOfLearningComboBox"
+                                  Margin="-235,5,5,5"
+                                  DisplayMemberPath="Name"
+                                  Visibility="Hidden" />
+                        <ComboBox x:Name="GroupComboBox"
+                                  Margin="-235,5,5,5"
+                                  DisplayMemberPath="Id"
+                                  Visibility="Hidden" />
+                        <ComboBox x:Name="CourseComboBox"
+                                  Margin="-235,5,5,5"
+                                  DisplayMemberPath="Course"
+                                  Visibility="Hidden" />
+                        <ComboBox x:Name="SpecialityComboBox"
+                                  Margin="-235,5,5,5"
+                                  Visibility="Hidden">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="{Binding FullSpeciality}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </StackPanel>
-
                     <StackPanel Orientation="Vertical"
+                                Margin="5,-35,5,5"
                                 HorizontalAlignment="Right">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Курс"
-                                       Margin="5"
-                                       Width="80"
-                                       Style="{StaticResource OtherTextBlock}" />
-                            <ComboBox x:Name="CouseCombBox"
-                                      Margin="5"
-                                      Width="Auto" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Группа"
-                                       Margin="5"
-                                       Width="80"
-                                       Style="{StaticResource OtherTextBlock}" />
-                            <ComboBox x:Name="GroupCombBox"
-                                      Margin="5"
-                                      Width="Auto" />
-                        </StackPanel>
                         <Button x:Name="AcceptButton"
                                 Content="Применить"
-                                Width="Auto"
-                                Margin="5,5,5,5"
+                                Margin="5"
                                 Click="AcceptButton_Click" />
                         <Button x:Name="CancelButton"
-                                Content="Сброс"
-                                Width="Auto"
-                                Margin="5,5,5,5"
+                                Content="Сбросить"
+                                Margin="5"
                                 Click="CancelButton_Click" />
+                        <StackPanel />
                     </StackPanel>
-
-                </StackPanel>
+                </DockPanel>
+                
             </GroupBox>
         </DockPanel>
-
         <DataGrid Grid.Row="1"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"

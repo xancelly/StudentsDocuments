@@ -176,7 +176,7 @@
             <Setter Property="FontSize"
                     Value="20" />
             <Setter Property="BorderBrush"
-                    Value="#1f1f1f" />
+                    Value="White" />
         </Style>
 
         <Style TargetType="TabItem">
@@ -185,9 +185,9 @@
             <Setter Property="FontSize"
                     Value="20" />
             <Setter Property="Background"
-                    Value="#1f1f1f" />
+                    Value="#4b2e83" />
             <Setter Property="Foreground"
-                    Value="#ef5d23" />
+                    Value="Black" />
         </Style>
 
         <Style TargetType="{x:Type TextBlock}"
